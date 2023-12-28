@@ -6,25 +6,54 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>702</width>
-    <height>451</height>
+    <width>795</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout" stretch="7,2">
-    <item>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="7,2">
+    <item row="0" column="0">
      <widget class="QTableWidget" name="tableInfoWidget"/>
     </item>
-    <item>
-     <widget class="QListWidget" name="tableNameListWidget"/>
+    <item row="0" column="1">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="DataTableListWidget" name="tableNameListWidget"/>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QCheckBox" name="qtCheckBox">
+          <property name="text">
+           <string>使用QT</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="generateBtn">
+          <property name="text">
+           <string>生成</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>DataTableListWidget</class>
+   <extends>QListWidget</extends>
+   <header>datatablelistwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="mainwindow.qrc"/>
  </resources>

@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include <QStringList>
+#include "datatablelistwidget.h"
 #include <QMap>
 #include "ui_mainwindow.h"
 #include "tableDefine.h"
@@ -20,6 +21,7 @@ public:
 protected slots:
     void onTableNameListWidgetItemDoubleClicked(QListWidgetItem* item);
     void onTableNameListWidgetItemClicked(QListWidgetItem* item);
+    void onGenerateBtnClicked();
 
 private:
     Ui::MainWindowClass ui;

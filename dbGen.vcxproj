@@ -89,14 +89,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="datatablelistwidget.cpp" />
     <ClCompile Include="SqlHelper.cpp" />
     <QtRcc Include="mainwindow.qrc" />
+    <QtUic Include="datatablelistwidget.ui" />
     <QtUic Include="mainwindow.ui" />
     <QtMoc Include="mainwindow.h" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="datatablelistwidget.h" />
+    <ClInclude Include="AbstarctGenerator.h" />
     <ClInclude Include="SqlHelper.h" />
     <ClInclude Include="tableDefine.h" />
   </ItemGroup>

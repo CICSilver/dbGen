@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include <QSqlRecord>
 #include <QMessageBox>
+#include <QFileDialog>
 #include "SqlHelper.h"
 
 MainWindow::MainWindow(QWidget *parent, QString dbPath)
@@ -17,10 +18,12 @@ MainWindow::MainWindow(QWidget *parent, QString dbPath)
 	// 显示选中表信息
 	ShowTableInfoWithSelectedTable();
 
-	connect(ui.tableNameListWidget, &QListWidget::itemDoubleClicked, 
+	connect(ui.tableNameListWidget, &DataTableListWidget::itemDoubleClicked,
 		this, &MainWindow::onTableNameListWidgetItemDoubleClicked);
-	connect(ui.tableNameListWidget, &QListWidget::itemClicked,
+	connect(ui.tableNameListWidget, &DataTableListWidget::itemClicked,
 		this, &MainWindow::onTableNameListWidgetItemClicked);
+	connect(ui.generateBtn, &QPushButton::clicked,
+		this, &MainWindow::onGenerateBtnClicked);
 }
 
 MainWindow::~MainWindow()
@@ -101,9 +104,9 @@ void MainWindow::ShowTableInfoWithSelectedTable()
 	tableInfoWidget->resizeColumnToContents(1);
 	tableInfoWidget->resizeColumnToContents(4);
 	//tableInfoWidget->resizeColumnsToContents();
-	qDebug() << tableInfoWidget->width();
-	qDebug() << tableInfoWidget->columnWidth(0) << tableInfoWidget->columnWidth(1) << tableInfoWidget->columnWidth(2)
-		<< tableInfoWidget->columnWidth(3) << tableInfoWidget->columnWidth(4) << tableInfoWidget->columnWidth(5);
+	//qDebug() << tableInfoWidget->width();
+	//qDebug() << tableInfoWidget->columnWidth(0) << tableInfoWidget->columnWidth(1) << tableInfoWidget->columnWidth(2)
+	//	<< tableInfoWidget->columnWidth(3) << tableInfoWidget->columnWidth(4) << tableInfoWidget->columnWidth(5);
 }
 
 void MainWindow::onTableNameListWidgetItemDoubleClicked(QListWidgetItem* item)
@@ -114,4 +117,11 @@ void MainWindow::onTableNameListWidgetItemDoubleClicked(QListWidgetItem* item)
 
 void MainWindow::onTableNameListWidgetItemClicked(QListWidgetItem* item)
 {
+}
+
+void MainWindow::onGenerateBtnClicked()
+{
+	// 选择生成位置
+	QString generatePath = QFileDialog::getExistingDirectory(this, "选择生成位置", "./");
+	
 }
