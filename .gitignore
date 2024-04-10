@@ -364,3 +364,7 @@ FodyWeavers.xsd
 
 #.sln files
 *.sln
+/.vscode
+/DB_GeneratedFiles/.vscode
+/DB_GeneratedFiles
+/testGen

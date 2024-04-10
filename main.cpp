@@ -1,9 +1,11 @@
+#pragma execution_character_set("utf-8")
 #include "mainwindow.h"
 #include "SqlHelper.h"
 #include <QtWidgets/QApplication>
 #include <QFileDialog>
 #include <QSqlRecord>
-
+#include <QDebug>
+#include "SqliteGenerator.h"
 void GetAllTableInfo()
 {
 	auto instance = SqlHelper::Instance();
@@ -38,15 +40,32 @@ void GetAllTableInfo()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    /*MainWindow w;
-    w.show();*/
 	QString fileName = QFileDialog::getOpenFileName(
 		nullptr, // parent widget
 		"选择数据库文件", // dialog title
 		"./", // initial directory
 		"Database files(*.db)" // filter
 	);
+	
 	MainWindow w(nullptr, fileName);
 	w.show();
+	// ========== DBG =========
+	//qgen::SqliteGenerator* instance = qgen::SqliteGenerator::Instance();
+	//tbg::TableInfo tabInfo;
+	//tbg::FieldInfo fieldInfo(0, "id", "INTEGER", 0, "", 1);
+	//tbg::FieldInfo fieldInfo1(1, "date", "TEXT", 0, "", 1);
+	//tabInfo.append(fieldInfo);
+	//tabInfo.append(fieldInfo1);
+
+	//QString code = instance->GenerateModel("Data", tabInfo);
+	//QFile generateModelFile("./testGen/test.h");
+	//generateModelFile.open(QIODevice::WriteOnly);
+	//generateModelFile.write(code.toStdString().c_str());
+	//generateModelFile.close();
+	//QFile daoFile("./testGen/dao.h");
+	//daoFile.open(QIODevice::WriteOnly);
+	//daoFile.write(instance->GenerateDao("Data", tabInfo).toStdString().c_str());
+	//daoFile.close();
+
     return a.exec();
 }

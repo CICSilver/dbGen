@@ -46,6 +46,9 @@
     <ClCompile Include="datatablelistwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SqliteGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SqlHelper.h">
@@ -54,7 +57,10 @@
     <ClInclude Include="tableDefine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbstarctGenerator.h">
+    <ClInclude Include="AbstractGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SqliteGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

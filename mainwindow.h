@@ -6,6 +6,7 @@
 #include <QMap>
 #include "ui_mainwindow.h"
 #include "tableDefine.h"
+class AbstractGenerator;
 class SqlHelper;
 class MainWindow : public QMainWindow
 {
@@ -18,6 +19,9 @@ public:
     void InitTableNameList();
     void ShowTableInfoWithSelectedTable();
 
+protected:
+    void GenerateFile(const QString& type, const QString& fileName, const QString& pathPrefix, std::function<QString()> generateContent);
+
 protected slots:
     void onTableNameListWidgetItemDoubleClicked(QListWidgetItem* item);
     void onTableNameListWidgetItemClicked(QListWidgetItem* item);
@@ -25,8 +29,9 @@ protected slots:
 
 private:
     Ui::MainWindowClass ui;
-    QMap<QString, QList<TableInfo>> m_tableInfoMap;
+    QMap<QString, tbg::TableInfo> m_tableInfoMap;
     QStringList m_tableNameList;
     SqlHelper* m_sqlHelper;
     QString m_dbPath;
+    AbstractGenerator* m_generator;
 };

@@ -19,7 +19,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{42C8C87F-27D2-4964-B110-953B50D3927B}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
@@ -37,7 +37,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.14.2_msvc2017_64</QtInstall>
+    <QtInstall>qt5-base_x64-windows-static-dbg</QtInstall>
     <QtModules>core;sql;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -64,6 +64,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -91,6 +96,7 @@
   <ItemGroup>
     <ClCompile Include="datatablelistwidget.cpp" />
     <ClCompile Include="SqlHelper.cpp" />
+    <ClCompile Include="SqliteGenerator.cpp" />
     <QtRcc Include="mainwindow.qrc" />
     <QtUic Include="datatablelistwidget.ui" />
     <QtUic Include="mainwindow.ui" />
@@ -100,8 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="datatablelistwidget.h" />
-    <ClInclude Include="AbstarctGenerator.h" />
+    <ClInclude Include="AbstractGenerator.h" />
     <ClInclude Include="SqlHelper.h" />
+    <ClInclude Include="SqliteGenerator.h" />
     <ClInclude Include="tableDefine.h" />
   </ItemGroup>
   <ItemGroup>
