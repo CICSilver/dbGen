@@ -132,6 +132,22 @@ void MainWindow::GenerateFile(const QString& type, const QString& fileName, cons
 	file.close();
 }
 
+void MainWindow::CopyHelperFile(const char* srcPath, const char* outPath)
+{
+	QFile srcFile(srcPath);
+	if (srcFile.open(QIODevice::ReadOnly))
+	{
+		QFile outFile(outPath);
+		if (outFile.open(QIODevice::WriteOnly))
+		{
+			outFile.write(srcFile.readAll());
+			outFile.close();
+		}
+		srcFile.close();
+	}
+
+}
+
 void MainWindow::onTableNameListWidgetItemDoubleClicked(QListWidgetItem* item)
 {
 	qDebug() << item->text();
@@ -149,11 +165,26 @@ void MainWindow::onGenerateBtnClicked()
 	QString pathPrefix = "./DB_GeneratedFiles";
 	QDir dir;
 
-	// copy sqlhelper file
-	QFile srcHeaderFile("./src/sqlhelper.h");
-	QFile srcCppFile("./src/sqlhelper.cpp");
-	srcHeaderFile.copy("./DB_GeneratedFiles/sqlhelper.h");
-	srcCppFile.copy("./DB_GeneratedFiles/sqlhelper.cpp");
+	// copy SqlHelper file
+	QFile srcHeaderFile(":/MainWindow/SqlHelper.h");
+	QFile srcCppFile(":/MainWindow/SqlHelper.cpp");
+
+	if (srcHeaderFile.open(QIODevice::ReadOnly))
+	{
+		QFile outHeaderFile("./DB_GeneratedFiles/SqlHelper.h");
+		if (outHeaderFile.open(QIODevice::WriteOnly))
+		{
+			outHeaderFile.write(srcHeaderFile.readAll());
+			outHeaderFile.close();
+		}
+		qDebug() << "generate SqlHelper.h ---> ./DB_GeneratedFiles/SqlHelper.h success";
+		srcHeaderFile.close();
+	}
+	//if(srcHeaderFile.copy("./DB_GeneratedFiles/SqlHelper.h"))
+	//	qDebug() << "generate SqlHelper.h ---> ./DB_GeneratedFiles/SqlHelper.h success";
+
+	if(srcCppFile.copy("./DB_GeneratedFiles/SqlHelper.cpp"))
+		qDebug() << "generate SqlHelper.cpp ---> ./DB_GeneratedFiles/SqlHelper.cpp success";
 	//if(!srcHeaderFile.copy("./DB_GeneratedFiles/sqlHelper.h") ||
 	//	!srcCppFile.copy("./DB_GeneratedFiles/sqlHelper.cpp"))
 	//{

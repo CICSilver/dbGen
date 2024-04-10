@@ -21,6 +21,7 @@ public:
 
 protected:
     void GenerateFile(const QString& type, const QString& fileName, const QString& pathPrefix, std::function<QString()> generateContent);
+    void CopyHelperFile(const char* srcPath, const char* outPath);
 
 protected slots:
     void onTableNameListWidgetItemDoubleClicked(QListWidgetItem* item);

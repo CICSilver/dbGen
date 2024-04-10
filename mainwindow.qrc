@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="MainWindow">
+    <qresource prefix="/MainWindow">
+        <file>SqlHelper.cpp</file>
+        <file>SqlHelper.h</file>
     </qresource>
 </RCC>
